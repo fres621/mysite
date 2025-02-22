@@ -4,8 +4,68 @@
     <meta name="og:type" content="website" />
     <meta name="og:title" content="scug" />
     <meta name="og:description" content="wawa" />
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: sans-serif;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 12px;
+        padding-left: 10vw;
+        padding-right: 10vw;
+        width: 100%;
+        gap: 12px;
+      }
+
+      form > * {
+        font-size: xx-large;
+      }
+
+      textarea {
+        height: 20vh;
+      }
+    </style>
   </head>
-  <body style="display: flex; align-items: center; justify-content: center">
-    <div style="font-size: xxx-large; font-family: sans-serif">nothing here yet sorry</div>
+  <body>
+    <div style="font-size: xxx-large">nothing here yet sorry</div>
+    <div style="font-size: x-large">you can send me messages:</div>
+    <form id="form" action="javascript:void(0);">
+      <input id="name" minlength="1" maxlength="32" value="" placeholder="Your name" type="text" required />
+      <textarea id="content" minlength="1" maxlength="1024" placeholder="Your message" required></textarea>
+      <input id="send" type="submit" value="Send" />
+    </form>
+    <script>
+      form.addEventListener('submit', async () => {
+        send.disabled = true;
+        name.disabled = true;
+        content.disabled = true;
+        let res = await fetch('https://mysite.mypawsaresmall.workers.dev/', {
+          method: 'POST',
+          content: JSON.stringify({
+            name: name.value,
+            content: content.value,
+          }),
+        })
+          .then((e) => e.text())
+          .then((e) => [true, e])
+          .catch((e) => [false, e]);
+
+        send.disabled = false;
+        name.disabled = false;
+        content.disabled = false;
+        if (res[0]) content.value = '';
+        alert(res[1]);
+      });
+    </script>
   </body>
 </html>
