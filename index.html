@@ -65,14 +65,14 @@
     <div style="font-size: xxx-large">nothing here yet sorry</div>
     <div style="font-size: x-large">you can send me messages:</div>
     <form id="form" action="javascript:void(0);">
-      <input id="name" minlength="1" maxlength="32" value="" placeholder="Your name" type="text" required />
+      <input id="username" minlength="1" maxlength="32" value="" placeholder="Your name" type="text" required />
       <textarea id="content" minlength="1" maxlength="1024" placeholder="Your message" required></textarea>
       <input id="send" type="submit" value="Send" />
     </form>
     <script>
       form.addEventListener('submit', async () => {
         send.disabled = true;
-        name.disabled = true;
+        username.disabled = true;
         content.disabled = true;
         let res = await fetch('https://mysite.mypawsaresmall.workers.dev/', {
           method: 'POST',
@@ -80,7 +80,7 @@
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            name: name.value,
+            name: username.value,
             content: content.value,
           }),
         })
@@ -89,7 +89,7 @@
           .catch((e) => [false, e]);
 
         send.disabled = false;
-        name.disabled = false;
+        username.disabled = false;
         content.disabled = false;
         if (res[0]) content.value = '';
         alert(res[1]);
