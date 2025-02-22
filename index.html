@@ -5,7 +5,22 @@
     <meta name="og:title" content="scug" />
     <meta name="og:description" content="wawa" />
     <style>
+      :root {
+        --bg: #ffffff;
+        --text: #000000;
+        --placeholder: #5a5a5a;
+        --submit: #bebfc0;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #02010a;
+          --text: #ffffff;
+          --placeholder: #b9b9b9;
+          --submit: #3f464d;
+        }
+      }
       body {
+        background-color: var(--bg);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -15,6 +30,7 @@
         height: 100%;
         overflow: hidden;
         font-family: sans-serif;
+        color: var(--text);
       }
       form {
         display: flex;
@@ -27,8 +43,17 @@
         gap: 12px;
       }
 
+      #send {
+        background-color: var(--submit);
+        color: var(--text);
+      }
+
       form > * {
         font-size: xx-large;
+        background-color: var(--bg);
+        &::placeholder {
+          color: var(--placeholder);
+        }
       }
 
       textarea {
