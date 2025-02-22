@@ -45,12 +45,12 @@
 
       #send {
         background-color: var(--submit);
-        color: var(--text);
       }
 
       form > * {
         font-size: xx-large;
         background-color: var(--bg);
+        color: var(--text);
         &::placeholder {
           color: var(--placeholder);
         }
@@ -76,6 +76,9 @@
         content.disabled = true;
         let res = await fetch('https://mysite.mypawsaresmall.workers.dev/', {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
           content: JSON.stringify({
             name: name.value,
             content: content.value,
