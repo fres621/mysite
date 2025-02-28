@@ -7,16 +7,19 @@
     <style>
       :root {
         --bg: #ffffff;
-        --text: #000000;
-        --placeholder: #5a5a5a;
-        --submit: #bebfc0;
+        --text: #050424;
+        --placeholder: #56575c;
+        --submit: #afbcca;
+        --font: sans-serif;
+        --border: #414868;
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --bg: #02010a;
-          --text: #ffffff;
-          --placeholder: #b9b9b9;
-          --submit: #3f464d;
+          --bg: #1a1b26;
+          --text: #a9b1d6;
+          --placeholder: #656b8a;
+          --submit: #1a1b26;
+          --border: #414868;
         }
       }
       body {
@@ -29,7 +32,7 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        font-family: sans-serif;
+        font-family: var(--font);
         color: var(--text);
       }
       form {
@@ -45,9 +48,14 @@
 
       #send {
         background-color: var(--submit);
+        cursor: pointer;
       }
 
       form > * {
+        font-family: var(--font);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 4px;
         font-size: xx-large;
         background-color: var(--bg);
         color: var(--text);
