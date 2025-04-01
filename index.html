@@ -28,6 +28,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        text-align: center;
         margin: 0;
         width: 100%;
         height: 100%;
@@ -50,8 +51,11 @@
         background-color: var(--submit);
         cursor: pointer;
       }
+      #send:hover {
+        background-color: color-mix(in srgb, var(--submit) 80%, black);
+      }
 
-      form > * {
+      .formopt {
         font-family: var(--font);
         border: 1px solid var(--border);
         border-radius: 5px;
@@ -59,9 +63,17 @@
         font-size: xx-large;
         background-color: var(--bg);
         color: var(--text);
+        border-image: url('./border.png') 8 / 8px round;
+        transition: background-color 0.1s linear;
         &::placeholder {
           color: var(--placeholder);
         }
+      }
+
+      .formopt:hover {
+        border-image: url('./2inner.webp') 13 / 13px / 6px stretch;
+        background-color: color-mix(in srgb, var(--bg) 80%, black);
+        transition: background-color 0.1s linear;
       }
 
       textarea {
@@ -73,16 +85,19 @@
     <div style="font-size: xxx-large">nothing here yet sorry</div>
     <div style="font-size: x-large">you can send me messages:</div>
     <form id="form" action="javascript:void(0);">
-      <input id="username" minlength="1" maxlength="32" value="" placeholder="Your name" type="text" required />
-      <textarea id="content" minlength="1" maxlength="1024" placeholder="Your message" required></textarea>
-      <input id="send" type="submit" value="Send" />
+      <input class="formopt" id="username" minlength="1" maxlength="32" value="" placeholder="Your name" type="text" required />
+      <textarea class="formopt" id="content" minlength="1" maxlength="1024" placeholder="Your message" required></textarea>
+      <div style="display: flex; flex-direction: row; gap: 12px">
+        <!-- <input class="formopt" type="submit" value="Add a drawing!" /> -->
+        <input class="formopt" id="send" type="submit" value="Send" style="flex: 1" />
+      </div>
     </form>
     <script>
       form.addEventListener('submit', async () => {
         send.disabled = true;
         username.disabled = true;
         content.disabled = true;
-        let res = await fetch('https://mysite.mypawsaresmall.workers.dev/', {
+        let res = await fetch('https://conflux.slug.cat/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
