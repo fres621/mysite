@@ -15,11 +15,11 @@
       }
       @media (prefers-color-scheme: dark) {
         :root {
-          --bg: #1a1b26;
-          --text: #a9b1d6;
-          --placeholder: #656b8a;
-          --submit: #1a1b26;
-          --border: #414868;
+          --bg: #191919;
+          --text: #a9a4b2;
+          --placeholder: #9b989e;
+          --submit: #191919;
+          --border: #a9a4b2;
         }
       }
       body {
@@ -52,14 +52,16 @@
         cursor: pointer;
       }
       #send:hover {
-        background-color: color-mix(in srgb, var(--submit) 80%, black);
+        background-color: color-mix(in srgb, var(--bg), rgba(0, 0, 0, 0.68));
       }
 
       .formopt {
+        border: none;
+        outline: none;
         font-family: var(--font);
         border: 1px solid var(--border);
         border-radius: 5px;
-        padding: 4px;
+        padding: 8px;
         font-size: xx-large;
         background-color: var(--bg);
         color: var(--text);
@@ -72,7 +74,7 @@
 
       .formopt:hover {
         border-image: url('./2inner.webp') 13 / 13px / 6px stretch;
-        background-color: color-mix(in srgb, var(--bg) 80%, black);
+        background-color: color-mix(in srgb, var(--bg), rgba(0, 0, 0, 0.68));
         transition: background-color 0.1s linear;
       }
 
